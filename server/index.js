@@ -47,6 +47,7 @@ app.get('/extensions/:id/version', (req, res) => {
 app.get('/extensions/:id', (req, res) => {
   const id = req.params.id;
   const sql = 'SELECT * FROM extensions WHERE id = ?';
+  console.log('.....:'+id)
   db.get(sql, [id], (err, row) => {
     if (err) {
       console.error(err.message);

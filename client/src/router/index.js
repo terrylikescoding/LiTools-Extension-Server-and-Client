@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../components/Home.vue';
-import Extension from '../components/Extension.vue';
+import ExtensionList from '@/components/ExtensionList.vue';
+import ExtensionDetails from '@/components/ExtensionDetails.vue';
 import Upload from '../components/Upload.vue';
 
 const routes = [
@@ -11,14 +12,14 @@ const routes = [
   },
   {
     path: '/extensions',
-    name: 'Extensions',
-    component: Extension,
+    name: 'extensionList',
+    component: ExtensionList,
     props: true,
   },
   {
     path: '/extensions/:id',
-    name: 'extension',
-    component: Extension,
+    name: 'extensionDetails',
+    component: ExtensionDetails,
     props: true,
   },
   {
