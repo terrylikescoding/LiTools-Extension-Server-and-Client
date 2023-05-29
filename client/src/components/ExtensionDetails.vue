@@ -23,6 +23,7 @@
   },
   methods: {
     fetchExtension(id) {
+      console.log('Fetching extension with ID:', id);
       axios.get(`http://localhost:3000/extensions/${id}`).then(response => {
         this.extension = response.data;
         this.loading = false;
