@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>{{ extension.name }} Details</h2>
-    <p>{{ extension.description }}</p>
+    <h1>{{ extension ? extension.name : 'No name' }}</h1>
+    <p>{{ extension ? extension.description : 'No description' }}</p>
     <button @click="onBack">Back to Extensions</button>
   </div>
 </template>
