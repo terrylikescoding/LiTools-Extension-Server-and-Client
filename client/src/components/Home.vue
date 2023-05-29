@@ -24,7 +24,9 @@ export default {
   methods: {
     async fetchExtensions() {
       try {
-        const response = await axios.get('/extensions');
+        const response = await axios.get('http://localhost:3000/extensions');
+        console.log('reponse.....');
+        debugger
         this.extensions = response.data;
       } catch (error) {
         console.error(error);

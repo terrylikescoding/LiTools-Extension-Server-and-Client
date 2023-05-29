@@ -17,18 +17,16 @@ export default {
   data() {
     return {
       extension: {},
-      extensions: [],
     };
   },
   created() {
-    // Fetch extensions data from API
-    axios.get('http://localhost:3000/extensions')
+    // Debugging
+    debugger;
+
+    // Fetch extension data from API
+    axios.get(`http://localhost:3000/extensions/${this.id}`)
       .then((response) => {
-        this.extensions = response.data;
-        
-        // Find extension object matching given ID prop
-        this.extension = this.extensions.find((e) => e.id === parseInt(this.id));
-        debugger
+        this.extension = response.data;
       })
       .catch((error) => {
         console.error(error);
