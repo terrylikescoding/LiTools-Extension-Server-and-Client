@@ -10,6 +10,12 @@ const routes = [
     component: Home,
   },
   {
+    path: '/extensions',
+    name: 'Extensions',
+    component: Extension,
+    props: true,
+  },
+  {
     path: '/extensions/:id',
     name: 'extension',
     component: Extension,

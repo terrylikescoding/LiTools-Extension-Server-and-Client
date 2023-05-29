@@ -1,3 +1,10 @@
+/**
+ *
+ * 添加错误处理逻辑，以便在发生错误时返回适当的 HTTP 响应码或错误信息。
+  实现更多的 RESTful API，例如创建扩展，更新扩展和删除扩展等。
+  优化数据库查询性能，例如使用索引和缓存等技术来加速查询。
+  实现用户认证和授权，以便只有经过身份验证的用户可以访问受保护的资源。 
+ */
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
