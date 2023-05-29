@@ -21,7 +21,7 @@
   },
   methods: {
     fetchExtension(id) {
-      axios.get(`/extensions/${id}`).then(response => {
+      axios.get(`http://localhost:3000/extensions/${id}`).then(response => {
         this.extension = response.data;
       }).catch(error => {
         console.error(error);
