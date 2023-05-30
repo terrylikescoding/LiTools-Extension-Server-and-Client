@@ -20,7 +20,7 @@
             <!-- 加一个介绍，告诉用户如何贡献插件 -->
             <router-link class="nav-item nav-link" to="/upload">Upload an Extension</router-link>
             <!-- 登录后，Login变成用户名 -->
-            <router-link class="nav-item nav-link" to="/login">Login</router-link>
+            <button class="nav-item nav-link btn btn-link" @click="toggleLoginForm">{{ loggedInUser ? loggedInUser : 'Login' }}</button>
           </div>
         </div>
       </div>
@@ -40,8 +40,61 @@
         </div>
       </div>
     </footer>
+    <div class="modal" tabindex="-1" role="dialog" v-if="showLoginForm">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login</h5>
+            <button type="button" class="close" @click="toggleLoginForm">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" v-model="email" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" v-model="password" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="toggleLoginForm">Close</button>
+            <button type="button" class="btn btn-primary" @click="loginUser">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      showLoginForm: false,
+      email: '',
+      password: '',
+      loggedInUser: null
+    }
+  },
+  methods: {
+    toggleLoginForm() {
+      this.showLoginForm = !this.showLoginForm;
+    },
+    loginUser() {
+      // Use Axios or other library to send login request to server
+      // Then set the loggedInUser data variable if login successful
+      this.loggedInUser = this.email; // For demo purposes only
+      this.toggleLoginForm();
+    }
+  }
+};
+</script>
 
 <style>
   @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
@@ -68,8 +121,3 @@
   }
 </style>
 
-<script>
-export default {
-  name: 'App',
-};
-</script>
