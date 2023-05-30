@@ -2,10 +2,19 @@
   <div class="container">
     <h1>Extensions</h1>
     <div class="search-container">
-      <input type="text" placeholder="Search extensions..." v-model="searchQuery" @input="filterExtensions">
+      <input
+        type="text"
+        placeholder="Search extensions..."
+        v-model="searchQuery"
+        @input="filterExtensions"
+      />
     </div>
     <div class="card-container">
-      <div v-for="extension in filteredExtensions" :key="extension.id" class="card">
+      <div
+        v-for="extension in filteredExtensions"
+        :key="extension.id"
+        class="card"
+      >
         <div class="card-header">{{ extension.name }}</div>
         <div class="card-content">
           <p>{{ extension.description }}</p>
@@ -15,23 +24,28 @@
         </div>
       </div>
     </div>
-    <div class="pagination-container">
-      <button v-if="page > 1" @click="previousPage">Previous Page</button>
-      <button v-if="extensions.length === pageSize" @click="nextPage">Next Page</button>
-    </div>
+    <PageNumber
+      :current-page="page"
+      :total-pages="totalPages"
+      @go-to-page="goToPage"
+    />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
+import PageNumber from "./PageNumber.vue";
 
 export default {
+  components: {
+    PageNumber,
+  },
   data() {
     return {
       page: 1,
       pageSize: 10,
       extensions: [],
-      searchQuery: '',
+      searchQuery: "",
     };
   },
   computed: {
@@ -45,6 +59,20 @@ export default {
         );
       });
     },
+    async totalPages() {
+      try {
+        this.totalPages = axios
+          .get("http://localhost:3000/extensions/count")
+          .then((result) => {
+            const totalExtensions = result.data.count;
+            const totalPages = Math.ceil(totalExtensions / this.pageSize);
+            return totalPages > 0 ? totalPages : 1;
+          });
+      } catch (error) {
+        console.error(error);
+        return 1;
+      }
+    },
   },
   mounted() {
     this.fetchExtensions();
@@ -52,7 +80,9 @@ export default {
   methods: {
     fetchExtensions() {
       axios
-        .get(`http://localhost:3000/extensions?page=${this.page}&pageSize=${this.pageSize}`)
+        .get(
+          `http://localhost:3000/extensions?page=${this.page}&pageSize=${this.pageSize}`
+        )
         .then((response) => {
           this.extensions = response.data.extensions;
         })
@@ -60,12 +90,8 @@ export default {
           console.error(error);
         });
     },
-    nextPage() {
-      this.page++;
-      this.fetchExtensions();
-    },
-    previousPage() {
-      this.page--;
+    goToPage(page) {
+      this.page = page;
       this.fetchExtensions();
     },
     filterExtensions() {
@@ -116,14 +142,27 @@ export default {
   padding: 10px;
 }
 
-.pagination-container {
+@media screen and (max-width: 480px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-number {
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="number"] {
+  width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 5px;
   background-color: #0077cc;
   color: #fff;
@@ -132,11 +171,5 @@ button {
 
 button:hover {
   opacity: 0.8;
-}
-
-@media screen and (max-width: 480px) {
-  .card-container {
-    grid-template-columns: 1fr;
-  }
 }
 </style>

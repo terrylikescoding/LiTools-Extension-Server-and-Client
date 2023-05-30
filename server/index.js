@@ -64,6 +64,18 @@ app.get('/extensions/:id/version', (req, res) => {
   });
 });
 
+app.get('/extensions/count', async (req, res) => {
+  try {
+    const count = await Extension.count();
+    console.log('/extensions/count = ',count );
+    res.send({ count });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: 'Unable to get the extension count' });
+  }
+});
+
+
 // 处理 /extensions/:id GET 请求，返回特定扩展的详细信息
 app.get('/extensions/:id', (req, res) => {
   const id = req.params.id;
@@ -82,6 +94,7 @@ app.get('/extensions/:id', (req, res) => {
     }
   });
 });
+
 
 
 // Upload an extension and add it to the database
