@@ -87,11 +87,13 @@ export default {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
 
 .card {
+  width: 200px;
+  height: 200px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
