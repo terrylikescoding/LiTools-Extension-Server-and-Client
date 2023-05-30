@@ -10,6 +10,9 @@ const store = createStore({
       state.user = user
     },
     // 其他 mutations
+    toggleLoginForm(state) {
+        state.loginFormVisible = !state.loginFormVisible;
+      },
   },
   actions: {
     login({ commit }, user) {
