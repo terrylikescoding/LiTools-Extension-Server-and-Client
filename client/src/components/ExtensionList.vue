@@ -1,21 +1,30 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-md-4" v-for="extension in extensions" :key="extension.id">
-        <div class="card mb-4 box-shadow">
-          <div class="card-body">
-            <h5 class="card-title">{{ extension.name }}</h5>
-            <p class="card-text">{{ extension.description }}</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <router-link :to="'/extensions/' + extension.id" class="btn btn-sm btn-outline-secondary">View</router-link>
-              </div>
-              <small class="text-muted">{{ extension.createdBy }}</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1>Extensions</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Version</th>
+          <th>Description</th>
+          <th>Created By</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="extension in extensions" :key="extension.id">
+          <td>{{ extension.name }}</td>
+          <td>{{ extension.version }}</td>
+          <td>{{ extension.description }}</td>
+          <td>{{ extension.createdBy }}</td>
+          <td>{{ extension.createdAt }}</td>
+          <td>{{ extension.updatedAt }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button v-if="page > 1" @click="previousPage">Previous Page</button>
+    <button v-if="extensions.length === pageSize" @click="nextPage">Next Page</button>
   </div>
 </template>
 
@@ -25,6 +34,8 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      page: 1,
+      pageSize: 10,
       extensions: [],
     };
   },
@@ -32,13 +43,25 @@ export default {
     this.fetchExtensions();
   },
   methods: {
-    async fetchExtensions() {
-      try {
-        const response = await axios.get('http://localhost:3000/extensions');
-        this.extensions = response.data;
-      } catch (error) {
-        console.error(error);
-      }
+    fetchExtensions() {
+      axios
+        .get(`http://localhost:3000/extensions?page=${this.page}&pageSize=${this.pageSize}`)
+        .then((response) => {
+          this.extensions = response.data.extensions;
+          debugger;
+          console.log('this.extensions ==>',this.extensions.length);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    nextPage() {
+      this.page++;
+      this.fetchExtensions();
+    },
+    previousPage() {
+      this.page--;
+      this.fetchExtensions();
     },
   },
 };

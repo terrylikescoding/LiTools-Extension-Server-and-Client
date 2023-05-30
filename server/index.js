@@ -8,9 +8,14 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const Extension = require('./models/extension');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 const port = 3000;
 
 const db = new sqlite3.Database('./database.sqlite');
@@ -19,17 +24,33 @@ const db = new sqlite3.Database('./database.sqlite');
 app.use(express.json());
 
 // Get a list of all extensions
-app.get('/extensions', (req, res) => {
-  const query = 'SELECT * FROM extensions';
-  console.log('query123: '+query)
-  db.all(query, [], (err, rows) => {
-    if (err) {
-      res.status(500).send({ error: err.message });
-    } else {
-      res.send(rows);
-    }
-  });
+app.get('/extensions', async (req, res) => {
+  const page = req.query.page ? parseInt(req.query.page) : 1;
+  const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
+  const name = req.query.name || null;
+  const version = req.query.version || null;
+  const createdBy = req.query.createdBy || null;
+
+  try {
+    const extensions = await Extension.find({ page, pageSize, name, version, createdBy });
+    const totalExtensions = extensions.length;
+    const totalPages = Math.ceil(totalExtensions / pageSize);
+
+    res.send({
+      extensions,
+      pageInfo: {
+        currentPage: page,
+        totalPages,
+        pageSize,
+        totalExtensions,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 });
+
 
 // Get the latest version of an extension
 app.get('/extensions/:id/version', (req, res) => {
