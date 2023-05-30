@@ -7,6 +7,9 @@
           <h5 class="card-title">Extensions Gallery</h5>
           <p class="card-text">Browse and search for LiTools extensions.</p>
           <router-link class="btn btn-primary" to="/extensions">View Extensions</router-link>
+          <br />
+          <br />
+          <router-link class="btn btn-primary" to="/upload">Upload an Extension</router-link>
         </div>
       </div>
     </div>
