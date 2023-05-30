@@ -3,8 +3,15 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand" href="#">LiTools</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -20,7 +27,9 @@
             <!-- 加一个介绍，告诉用户如何贡献插件 -->
             <router-link class="nav-item nav-link" to="/upload">Upload an Extension</router-link>
             <!-- 登录后，Login变成用户名 -->
-            <button class="nav-item nav-link btn btn-link" @click="toggleLoginForm">{{ loggedInUser ? loggedInUser : 'Login' }}</button>
+            <button class="nav-item nav-link btn btn-link" @click="toggleLoginForm">
+              {{ loggedInUser ? loggedInUser : "Login" }}
+            </button>
           </div>
         </div>
       </div>
@@ -53,11 +62,11 @@
             <form>
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" v-model="email" required>
+                <input type="email" class="form-control" id="email" v-model="email" required />
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" v-model="password" required>
+                <input type="password" class="form-control" id="password" v-model="password" required />
               </div>
             </form>
           </div>
@@ -72,52 +81,58 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      showLoginForm: false,
-      email: '',
-      password: '',
-      loggedInUser: null
-    }
+      email: "",
+      password: "",
+    };
+  },
+  computed: {
+    ...mapState([
+      "showLoginForm",
+      "loggedInUser"
+    ]),
   },
   methods: {
     toggleLoginForm() {
-      this.showLoginForm = !this.showLoginForm;
+      this.$store.commit("toggleLoginForm");
     },
     loginUser() {
       // Use Axios or other library to send login request to server
       // Then set the loggedInUser data variable if login successful
-      this.loggedInUser = this.email; // For demo purposes only
-      this.toggleLoginForm();
-    }
-  }
+      this.$store.commit("loginUser", this.email); // For demo purposes only
+      this.email = "";
+      this.password = "";
+    },
+  },
 };
 </script>
 
 <style>
-  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
 
-  .site-container {
-    min-height: 100vh;
-    position: relative;
-  }
+.site-container {
+  min-height: 100vh;
+  position: relative;
+}
 
-  .content {
-    padding-bottom: 50px;
-  }
+.content {
+  padding-bottom: 50px;
+}
 
-  .footer {
-    background-color: #f5f5f5;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0 15px;
-  }
+.footer {
+  background-color: #f5f5f5;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 15px;
+}
 </style>
-
