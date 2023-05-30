@@ -46,6 +46,7 @@ export default {
       pageSize: 10,
       extensions: [],
       searchQuery: "",
+      totalPages: null, // 初始化为 null
     };
   },
   computed: {
@@ -59,23 +60,10 @@ export default {
         );
       });
     },
-    async totalPages() {
-      try {
-        this.totalPages = axios
-          .get("http://localhost:3000/extensions/count")
-          .then((result) => {
-            const totalExtensions = result.data.count;
-            const totalPages = Math.ceil(totalExtensions / this.pageSize);
-            return totalPages > 0 ? totalPages : 1;
-          });
-      } catch (error) {
-        console.error(error);
-        return 1;
-      }
-    },
   },
   mounted() {
     this.fetchExtensions();
+    this.getTotalPages();
   },
   methods: {
     fetchExtensions() {
@@ -89,6 +77,17 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    async getTotalPages() {
+      try {
+        const result = await axios.get("http://localhost:3000/extensions/count");
+        const totalExtensions = result.data.count;
+        console.log('result.data.count=',totalExtensions);
+        this.totalPages = Math.ceil(totalExtensions / this.pageSize);
+      } catch (error) {
+        console.error(error);
+        this.totalPages = 1; // 如果获取总数失败则设置为默认值
+      }
     },
     goToPage(page) {
       this.page = page;
