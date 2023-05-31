@@ -32,6 +32,9 @@
               </div>
             </div>
           </div>
+          <div class="col-md-3 mb-4">
+            <button class="btn btn-primary w-100" type="button">Create an Idea</button>
+          </div>
         </div>
         <div class="col-md-9">
           <div class="card shadow-sm mb-4">
@@ -176,76 +179,31 @@
   
 
   
-  <style scoped>
-.list-group {
-  background-color: #f3f4f5;
-}
-
-.list-group-item {
-  border-color: #d8dde6 !important;
-  border-width: 1px 0; /* Add top and bottom borders */
-  margin-bottom: 10px; /* Add margin at the bottom */
-}
-
-.list-group-item:first-child {
-  border-top-width: 0; /* Remove border from first child */
-}
-
-.list-group-item.active,
-.list-group-item-action:focus {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #fff;
-}
-
-.list-group-item.active .text-muted,
-.list-group-item-action:focus .text-muted {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.list-group-item.active .fa-thumbs-up,
-.list-group-item-action:focus .fa-thumbs-up {
-  color: #fff;
-}
-
-.card .active .fa-thumbs-up {
-  color: #007bff;
-}
-.active span {
-  color: #007bff;
-}
-
-.list-group-item:hover {
-  background-color: #fff;
-  transform: translateY(-5px);
-  transition: all 0.2s ease-in-out;
-  border: 1px solid #000; /* Add black border on hover */
-}
-
-@media (min-width: 576px) {
-  .col-md-9 .card {
-    display: flex;
-    align-items: center;
+  <style>
+  .list-group-item:hover {
+    cursor: pointer;
   }
-}
-
-.input-group-append {
-  height: 38px;
-}
-
-.form-control {
-  border-radius: 0;
-  border-right: none;
-}
-
-.btn-outline-secondary {
-  border-color: #ced4da;
-  border-left: none;
-  border-radius: 0;
-}
-.btn-outline-secondary:hover {
-  background-color: #f8f9fa;
-}
+  .list-group-item.active,
+  .list-group-item.active:hover {
+    background-color: #f7f7f7;
+    color: #333;
+    border-color: #f7f7f7;
+  }
+  .list-group-item.active .fas {
+    color: #333;
+  }
+  .input-group input[type="text"]:focus {
+    box-shadow: none;
+  }
+  .input-group-append button:focus {
+    box-shadow: none;
+  }
+  .input-group-append button:hover {
+    background-color: #f7f7f7;
+  }
+  .active .fas {
+    color: #333;
+  }
 </style>
 
   
