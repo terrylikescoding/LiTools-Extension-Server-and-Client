@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../components/Home.vue';
 import ExtensionList from '@/components/ExtensionList.vue';
 import ExtensionDetails from '@/components/ExtensionDetails.vue';
-import Upload from '../components/Upload.vue';
+import Upload from '@/components/Upload.vue';
+import ExtensionIdeas from '@/components/ExtensionIdeas.vue';
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     path: '/upload',
     name: 'upload',
     component: Upload,
+  },
+  {
+    path: '/extension-ideas',
+    name: 'extension-ideas',
+    component: ExtensionIdeas,
   },
 ];
 

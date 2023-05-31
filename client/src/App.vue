@@ -22,7 +22,7 @@
           </ul>
           <div class="navbar-nav mx-3">
             <!-- 参考 https://plugins.jetbrains.com/plugin-ideas/search?sorting=Votes -->
-            <router-link class="nav-item nav-link" to="/plugin-ideas">Plugin Ideas</router-link>
+            <router-link class="nav-item nav-link" to="/extension-ideas">Plugin Ideas</router-link>
             <router-link class="nav-item nav-link" to="/extensions">View Extensions</router-link>
             <!-- 加一个介绍，告诉用户如何贡献插件 -->
             <router-link class="nav-item nav-link" to="/upload">Upload an Extension</router-link>
