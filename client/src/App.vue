@@ -17,18 +17,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <router-link class="nav-link" to="/">Home</router-link>
+              <router-link class="nav-link" to="/">主页</router-link>
             </li>
           </ul>
           <div class="navbar-nav mx-3">
             <!-- 参考 https://plugins.jetbrains.com/plugin-ideas/search?sorting=Votes -->
-            <router-link class="nav-item nav-link" to="/extension-ideas">Plugin Ideas</router-link>
-            <router-link class="nav-item nav-link" to="/extensions">View Extensions</router-link>
+            <router-link class="nav-item nav-link" to="/download">下载</router-link>
+            <router-link class="nav-item nav-link" to="/extension-ideas">插件征集</router-link>
+            <router-link class="nav-item nav-link" to="/extensions">插件市场</router-link>
             <!-- 加一个介绍，告诉用户如何贡献插件 -->
-            <router-link class="nav-item nav-link" to="/upload">Upload an Extension</router-link>
+            <router-link class="nav-item nav-link" to="/upload">贡献插件</router-link>
+            <router-link class="nav-item nav-link" to="/bug-report">问题反馈</router-link>
             <!-- 登录后，Login变成用户名 -->
             <button class="nav-item nav-link btn btn-link" @click="toggleLoginForm">
-              {{ loggedInUser ? loggedInUser : "Login" }}
+              {{ loggedInUser ? loggedInUser : "登录" }}
             </button>
           </div>
         </div>
