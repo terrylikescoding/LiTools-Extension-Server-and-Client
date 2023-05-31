@@ -35,12 +35,15 @@
         </div>
         <div class="col-md-9">
           <div class="card-columns">
-            <div class="card shadow-sm mb-4" v-for="(idea, index) in sortedIdeas" :key="index">
-              <div class="card-body">
-                <h5 class="card-title">{{ idea.title }}</h5>
-                <p class="card-text">{{ idea.description }}</p>
+            <div class="card shadow-sm mb-4" v-for="(idea, index) in sortedIdeas" :key="index"
+              @mouseover="hoveredIndex = index" @mouseout="hoveredIndex = null">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h5 class="card-title">{{ idea.title }}</h5>
+                  <p class="card-text">{{ idea.description }}</p>
+                </div>
                 <div class="d-flex justify-content-between align-items-center">
-                  <div class="d-flex align-items-center">
+                  <div class="d-flex align-items-center" :class="{ active: hoveredIndex === index }">
                     <i class="fas fa-thumbs-up mr-1"></i>
                     <span>{{ idea.votes }}</span>
                   </div>
@@ -96,7 +99,8 @@
             votes: 9,
             date: "Created on Mar 12, 2021"
           }
-        ]
+        ],
+        hoveredIndex: null
       }
     },
     computed: {
@@ -120,9 +124,23 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   .card-columns {
     column-count: 3;
+  }
+  
+  /* Add thumb up icon before vote count */
+  .card .active .fa-thumbs-up {
+    color: #007bff;
+  }
+  .active span {
+    color: #007bff;
+  }
+  
+  /* Add hover animation */
+  .card:hover {
+    transform: translateY(-5px);
+    transition: all 0.2s ease-in-out;
   }
   </style>
   
