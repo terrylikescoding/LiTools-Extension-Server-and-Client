@@ -181,6 +181,12 @@
   
   .list-group-item {
     border-color: #d8dde6 !important;
+    border-width: 1px 0; /* Add top and bottom borders */
+    margin-bottom: 10px; /* Add margin at the bottom */
+  }
+  
+  .list-group-item:first-child {
+    border-top-width: 0; /* Remove border from first child */
   }
   
   .list-group-item.active,
