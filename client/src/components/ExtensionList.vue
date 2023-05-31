@@ -17,11 +17,7 @@
         :key="extension.id"
        >
         <ExtensionInfoCard
-        :name='extension.name'
-        :author="extension.createdBy"
-        :description="extension.description"
-        :version="extension.version"
-        :create-time="extension.createdAt"
+        :extension="extension"
         />
       </div>
     </div>
@@ -78,6 +74,15 @@ export default {
         )
         .then((response) => {
           this.extensions = response.data.extensions;
+          // testing 添加评分等
+          for(let e of this.extensions){
+            // e['rating'] = 4.5
+            e.rating = 4.5
+            e.isNew = true
+            e.iconUrl = "https://plugins.jetbrains.com/files/10037/332761/icon/pluginIcon.svg"
+            // e.isUpdated = true
+            console.log(e);
+          }
         })
         .catch((error) => {
           console.error(error);

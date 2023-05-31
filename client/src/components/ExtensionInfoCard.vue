@@ -1,71 +1,110 @@
 <template>
-    <div class="card mb-3 shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title">{{ extension.name }}</h5>
-        <p class="card-text">{{ extension.description }}</p>
-        <a :href="`mailto:${extension.authorEmail}`" class="btn btn-primary">Contact Author</a>
-        <router-link :to="`/extensions/${extension.id}`" class="btn btn-outline-primary ml-2">View Details</router-link>
-      </div>
-      <div class="card-footer d-flex justify-content-between align-items-center">
-        <div class="text-muted">
-          <span class="mr-2">
-            <i class="fa fa-download"></i> {{ extension.downloads }} downloads
-          </span>
-          <span v-if="typeof extension.rating !== 'undefined'">
-            <i class="fa fa-star"></i> {{ extension.rating.toFixed(1) }}
-          </span>
-        </div>
-        <div>
-          <span class="badge badge-success">{{ extension.type }}</span>
-          <span v-if="extension.isNew" class="badge badge-warning ml-1">New</span>
-          <span v-if="extension.isUpdated" class="badge badge-warning ml-1">Updated</span>
-        </div>
-      </div>
+    <div class="card">
+    <img :src="extension.iconUrl" alt="" />
+    <div class="info">
+    <h2>{{ extension.name }}</h2>
+    <p>{{ extension.description }}</p>
+    <div class="created-by">
+    Created by {{ extension.createdBy }}
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ExtensionInfoCard',
+    <div class="rating">
+    <span>{{ extension.rating }}</span> ★
+    </div>
+    </div>
+    <div v-if="extension.isUpdated" class="tag updated">Updated</div>
+    <div v-if="extension.isNew" class="tag new">New</div>
+    </div>
+    </template>
+    
+    <script>
+    export default {
     props: {
-      extension: {
-        type: Object,
-        required: true
-      }
+    extension: {
+    type: Object,
+    required: true,
+    },
+    },
+    };
+    </script>
+    
+    <style scoped>
+    .card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 350px;
     }
-  }
-  </script>
-  
-  <style scoped>
-  .card {
-    border: none;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .btn-outline-primary {
-    color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-outline-primary:hover {
-    background-color: #007bff;
+    
+    .card img {
+    display: block;
+    height: 80px;
+    margin-right: 20px;
+    object-fit: cover;
+    width: 80px;
+    }
+    
+    .card .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    width: calc(100% - 120px);
+    }
+    
+    .card h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    }
+    
+    .card p {
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    height: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+    
+    .card .created-by {
+    color: #666;
+    font-size: 0.8rem;
+    }
+    
+    .card .rating {
+    align-items: center;
+    display: flex;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    }
+    
+    .card .rating span {
+    margin-right: 5px;
+    }
+    
+    .tag {
+    border-radius: 5px;
     color: #fff;
-  }
-  
-  .badge-success {
-    background-color: #28a745;
-  }
-  
-  .badge-warning {
-    background-color: #ffc107;
-  }
-  
-  .text-muted {
-    font-size: 12px;
-  }
-  </style>
-  
+    font-size: 0.7rem;
+    padding: 3px 5px;
+    text-transform: uppercase;
+    }
+    
+    .tag.new {
+    background-color: #31c51e;
+    }
+    
+    .tag.updated {
+    background-color: #f89820;
+    }
+    
+    .updated,
+    .new {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    }
+    </style>
