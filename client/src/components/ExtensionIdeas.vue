@@ -35,12 +35,12 @@
         </div>
         <div class="col-md-9">
           <div class="card shadow-sm mb-4">
-            <div class="card-body">
+            <div class="card-body p-0">
               <form>
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for plugin ideas..." v-model="searchQuery">
+                <div class="input-group input-group-lg">
+                  <input type="text" class="form-control border-0 rounded-0" placeholder="Search for plugin ideas..." v-model="searchQuery">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @click.prevent="searchForIdeas()">Search</button>
+                    <button class="btn btn-outline-secondary border-0 rounded-0" type="button" @click.prevent="searchForIdeas()">Search</button>
                   </div>
                 </div>
               </form>
@@ -69,8 +69,8 @@
             </div>
           </div>
           <div class="list-group mb-4" v-else>
-            <div class="list-group-item list-group-item-action flex-column align-items-start border-0 shadow-sm" v-for="(idea, index) in searchResults" :key="index"
-              @mouseover="hoveredIndex = index" @mouseout="hoveredIndex = null">
+            <div class="list-group-item list-group-item-action flex-column align-items-start border-0 shadow-sm"
+              v-for="(idea, index) in searchResults" :key="index" @mouseover="hoveredIndex = index" @mouseout="hoveredIndex = null">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ idea.title }}</h5>
                 <small class="text-muted">{{ idea.date }}</small>
@@ -163,85 +163,89 @@
       searchForIdeas() {
         if (this.searchQuery.length > 0) {
           let query = this.searchQuery.toLowerCase();
-          this.searchResults = this.ideas.filter(idea =>
-            idea.title.toLowerCase().includes(query) || idea.description.toLowerCase().includes(query)
-          );
+          this.searchResults = this.ideas
+            .filter((idea) => idea.title.toLowerCase().includes(query) || idea.description.toLowerCase().includes(query))
+            .sort((a, b) => b.votes - a.votes);
         } else {
           this.searchResults = null;
         }
       }
     }
-  };
+  }
   </script>
   
+
+  
   <style scoped>
-  .list-group {
-    background-color: #f3f4f5;
+.list-group {
+  background-color: #f3f4f5;
+}
+
+.list-group-item {
+  border-color: #d8dde6 !important;
+  border-width: 1px 0; /* Add top and bottom borders */
+  margin-bottom: 10px; /* Add margin at the bottom */
+}
+
+.list-group-item:first-child {
+  border-top-width: 0; /* Remove border from first child */
+}
+
+.list-group-item.active,
+.list-group-item-action:focus {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.list-group-item.active .text-muted,
+.list-group-item-action:focus .text-muted {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.list-group-item.active .fa-thumbs-up,
+.list-group-item-action:focus .fa-thumbs-up {
+  color: #fff;
+}
+
+.card .active .fa-thumbs-up {
+  color: #007bff;
+}
+.active span {
+  color: #007bff;
+}
+
+.list-group-item:hover {
+  background-color: #fff;
+  transform: translateY(-5px);
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #000; /* Add black border on hover */
+}
+
+@media (min-width: 576px) {
+  .col-md-9 .card {
+    display: flex;
+    align-items: center;
   }
-  
-  .list-group-item {
-    border-color: #d8dde6 !important;
-    border-width: 1px 0; /* Add top and bottom borders */
-    margin-bottom: 10px; /* Add margin at the bottom */
-  }
-  
-  .list-group-item:first-child {
-    border-top-width: 0; /* Remove border from first child */
-  }
-  
-  .list-group-item.active,
-  .list-group-item-action:focus {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #fff;
-  }
-  
-  .list-group-item.active .text-muted,
-  .list-group-item-action:focus .text-muted {
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .list-group-item.active .fa-thumbs-up,
-  .list-group-item-action:focus .fa-thumbs-up {
-    color: #fff;
-  }
-  
-  .card .active .fa-thumbs-up {
-    color: #007bff;
-  }
-  .active span {
-    color: #007bff;
-  }
-  
-  .list-group-item:hover {
-    background-color: #fff;
-    transform: translateY(-5px);
-    transition: all 0.2s ease-in-out;
-  }
-  
-  @media (min-width: 576px) {
-    .col-md-9 .card {
-      display: flex;
-      align-items: center;
-    }
-  }
-  
-  .input-group-append {
-    height: 38px;
-  }
-  
-  .form-control {
-    border-radius: 0;
-    border-right: none;
-  }
-  
-  .btn-outline-secondary {
-    border-color: #ced4da;
-    border-left: none;
-    border-radius: 0;
-  }
-  .btn-outline-secondary:hover {
-    background-color: #f8f9fa;
-  }
-  </style>
+}
+
+.input-group-append {
+  height: 38px;
+}
+
+.form-control {
+  border-radius: 0;
+  border-right: none;
+}
+
+.btn-outline-secondary {
+  border-color: #ced4da;
+  border-left: none;
+  border-radius: 0;
+}
+.btn-outline-secondary:hover {
+  background-color: #f8f9fa;
+}
+</style>
+
   
