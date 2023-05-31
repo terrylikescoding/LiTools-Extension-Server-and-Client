@@ -1,83 +1,71 @@
 <template>
-  <div class="card">
-    <div class="card-header">{{ name }}</div>
-    <div class="card-content">
-      <p>{{ description }}</p>
-      <p>Version: {{ version }}</p>
-      <p>Created by: {{ Author }}</p>
-      <p>Created at: {{ createTime }}</p>
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ extension.name }}</h5>
+        <p class="card-text">{{ extension.description }}</p>
+        <a :href="`mailto:${extension.authorEmail}`" class="btn btn-primary">Contact Author</a>
+        <router-link :to="`/extensions/${extension.id}`" class="btn btn-outline-primary ml-2">View Details</router-link>
+      </div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <div class="text-muted">
+          <span class="mr-2">
+            <i class="fa fa-download"></i> {{ extension.downloads }} downloads
+          </span>
+          <span v-if="typeof extension.rating !== 'undefined'">
+            <i class="fa fa-star"></i> {{ extension.rating.toFixed(1) }}
+          </span>
+        </div>
+        <div>
+          <span class="badge badge-success">{{ extension.type }}</span>
+          <span v-if="extension.isNew" class="badge badge-warning ml-1">New</span>
+          <span v-if="extension.isUpdated" class="badge badge-warning ml-1">Updated</span>
+        </div>
+      </div>
     </div>
-  </div>
-</template>
-
-
-<script>
-export default {
-  name: "ExtensionInfoCard",
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    version: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    createTime: {
-      type: String,
-      required: true,
-    },
-    author: {
-      type: String,
-      required: true,
-    },
-    //   添加评分，下载量
-  },
-  data() {
-    return {
-      extension: {},
-    };
-  },
-};
-</script>
-
-<style scoped>
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card-header {
-  font-size: 24px;
-  font-weight: bold;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-
-@media screen and (max-width: 480px) {
-  .card-container {
-    grid-template-columns: 1fr;
+  </template>
+  
+  <script>
+  export default {
+    name: 'ExtensionInfoCard',
+    props: {
+      extension: {
+        type: Object,
+        required: true
+      }
+    }
   }
-}
-</style>
-
+  </script>
+  
+  <style scoped>
+  .card {
+    border: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .badge-success {
+    background-color: #28a745;
+  }
+  
+  .badge-warning {
+    background-color: #ffc107;
+  }
+  
+  .text-muted {
+    font-size: 12px;
+  }
+  </style>
+  
