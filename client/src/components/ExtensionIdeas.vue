@@ -1,6 +1,6 @@
 <template>
     <div class="container my-5">
-      <h1 class="mb-4">JetBrains Plugin Ideas</h1>
+      <h1 class="mb-4">LiTools Plugin Ideas</h1>
       <div class="row">
         <div class="col-md-3 mb-4">
           <div class="card shadow-sm">
@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="col-md-3 mb-4">
-            <button class="btn btn-primary w-100" type="button">Create an Idea</button>
+            <button class="btn btn-primary  btn-create-idea" type="button">Create an Idea</button>
           </div>
         </div>
         <div class="col-md-9">
@@ -55,7 +55,7 @@
             <div class="col-sm-6 text-muted" v-else>{{ searchResults.length }} Results</div>
           </div>
           <div class="list-group mb-4" v-if="searchResults === null">
-            <div class="list-group-item list-group-item-action flex-column align-items-start border-0 shadow-sm" v-for="(idea, index) in sortedIdeas" :key="index"
+            <div class="list-group-item list-group-item-action flex-column align-items-start shadow-sm" v-for="(idea, index) in sortedIdeas" :key="index"
               @mouseover="hoveredIndex = index" @mouseout="hoveredIndex = null">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ idea.title }}</h5>
@@ -63,10 +63,10 @@
               </div>
               <p class="mb-1">{{ idea.description }}</p>
               <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">{{ idea.votes }} votes</small>
                 <div class="d-flex align-items-center" :class="{ active: hoveredIndex === index }">
+                  <!-- todo 大拇指图标暂时未展示  -->
                   <i class="fas fa-thumbs-up mr-1"></i>
-                  <span>{{ idea.votes }}</span>
+                  <span>{{ idea.votes }} votes</span>
                 </div>
               </div>
             </div>
@@ -180,8 +180,12 @@
 
   
   <style>
+  .list-group-item {
+    margin-bottom: 10px;
+  }
   .list-group-item:hover {
     cursor: pointer;
+    border: 1px solid #333;
   }
   .list-group-item.active,
   .list-group-item.active:hover {
@@ -204,6 +208,13 @@
   .active .fas {
     color: #333;
   }
+
+  .btn-create-idea {
+  width: 200px;
+  padding-top: 0.5rem;
+  margin-top : 20px;
+}
 </style>
 
+<!-- todo 添加状态，如果已完成则给出插件的链接！待完成弹出的填写框 -->
   
