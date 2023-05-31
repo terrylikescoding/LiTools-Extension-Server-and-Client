@@ -9,21 +9,24 @@
         @input="filterExtensions"
       />
     </div>
+
+    <!-- 卡片父容器 -->
     <div class="card-container">
       <div
         v-for="extension in filteredExtensions"
         :key="extension.id"
-        class="card"
-      >
-        <div class="card-header">{{ extension.name }}</div>
-        <div class="card-content">
-          <p>{{ extension.description }}</p>
-          <p>Version: {{ extension.version }}</p>
-          <p>Created by: {{ extension.createdBy }}</p>
-          <p>Created at: {{ extension.createdAt }}</p>
-        </div>
+       >
+        <ExtensionInfoCard
+        :name='extension.name'
+        :author="extension.createdBy"
+        :description="extension.description"
+        :version="extension.version"
+        :create-time="extension.createdAt"
+        />
       </div>
     </div>
+
+    <!-- 页码 -->
     <PageNumber
       :current-page="page"
       :total-pages="totalPages"
@@ -35,10 +38,12 @@
 <script>
 import axios from "axios";
 import PageNumber from "./PageNumber.vue";
+import ExtensionInfoCard from "./ExtensionInfoCard.vue";
 
 export default {
   components: {
     PageNumber,
+    ExtensionInfoCard
   },
   data() {
     return {
@@ -116,30 +121,6 @@ export default {
   gap: 20px;
 }
 
-.card {
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card-header {
-  font-size: 24px;
-  font-weight: bold;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.card-content {
-  padding: 10px;
-}
 
 @media screen and (max-width: 480px) {
   .card-container {
