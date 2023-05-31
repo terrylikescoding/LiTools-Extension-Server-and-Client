@@ -45,7 +45,10 @@
       toggleRegisterForm() {
         // Implement register form as a similar component and show it instead
       }
-    }
+    },
+    created() {
+    this.toggleLoginForm();
+  },
   };
   </script>
   
