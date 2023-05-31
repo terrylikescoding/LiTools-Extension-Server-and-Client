@@ -41,16 +41,16 @@
       loginUser() {
         // Use Axios or other library to send login request to server
         // Then redirect user to dashboard if login successful
-      },
-      toggleRegisterForm() {
-        // Implement register form as a similar component and show it instead
+  
+        this.toggleLoginForm(); // Toggle the login form
       }
     },
     created() {
-    this.toggleLoginForm();
-  },
+      this.toggleLoginForm(); // Show the login form on component creation
+    }
   };
   </script>
+  
   
   <style scoped>
   /* login form styles */
