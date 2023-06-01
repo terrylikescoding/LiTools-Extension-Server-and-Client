@@ -37,6 +37,10 @@
           <router-link class="nav-item nav-link" to="/bug-report"
             >问题反馈</router-link
           >
+
+          <router-link v-if="isAdmin" class="nav-item nav-link" to="/admin-panel"
+            >Admin</router-link
+          >
           <!-- 登录后，Login变成用户名 -->
           <button
             class="nav-item nav-link btn btn-link"
@@ -105,6 +109,7 @@ export default {
     return {
       email: "",
       password: "",
+      isAdmin : true // ToDo 仅供测试，后续改为从数据库查询
     };
   },
   computed: {
