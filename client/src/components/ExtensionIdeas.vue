@@ -102,7 +102,7 @@ export default {
   data() {
     return {
       sortBy: "votes",
-      searchBoxPlaceholder:'Search for plugin ideas..',
+      searchBoxPlaceholder:'搜索插件创意...',
       ideas: [
         {
           title: "Incremental search and replace in path",

@@ -3,7 +3,7 @@
         <div class="input-group input-group-lg">
             
             <div class="input-group-prepend">
-                <button v-if="searchModel" class="btn btn-circle" type="button"
+                <button v-if="searchModel" class="btn" type="button"
                     @click.prevent="$emit('update:search-model', '')">
                     <i class="fas fa-times-circle"></i>
                 </button>
@@ -13,7 +13,7 @@
                 @input="$emit('update:search-model', $event.target.value)" />
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary border-0 rounded-0" type="button" @click.prevent="searchCallBack">
-                    search
+                    搜索
                 </button>
             </div>
         </div>
