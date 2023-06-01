@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+   <div class="card" @click="$router.push(`/extensions/${extension.id}`)">
     <img :src="extension.iconUrl" alt="" />
     <div class="info">
       <h2>{{ extension.name }}</h2>
@@ -35,6 +35,12 @@ export default {
   justify-content: space-between;
   width: 350px;
 }
+
+.card:hover {
+  cursor: pointer;
+  border: #666 2px solid;
+}
+
 
 .card img {
   display: block;
@@ -104,5 +110,11 @@ export default {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+.btn {
+  /* ... */
+  padding: 8px 16px; /* 将 padding 缩小 */
+  font-size: 14px; /* 将字体大小缩小 */
 }
 </style>
