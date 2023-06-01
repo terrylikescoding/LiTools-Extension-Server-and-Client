@@ -112,49 +112,54 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 960px;
+  max-width: 1200px;
   margin: auto;
 }
 
 .search-container {
-  margin-bottom: 20px;
+margin-bottom: 20px;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 5px;
 }
 
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .card-container {
     grid-template-columns: 1fr;
   }
 }
 
 .page-number {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+margin-top: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 input[type="number"] {
-  width: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
+width: 50px;
+margin-left: 10px;
+margin-right: 10px;
 }
 
 button {
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: #0077cc;
-  color: #fff;
-  cursor: pointer;
+padding: 5px 10px;
+border-radius: 5px;
+background-color: #0077cc;
+color: #fff;
+cursor: pointer;
 }
 
 button:hover {
-  opacity: 0.8;
+opacity: 0.8;
 }
 </style>
