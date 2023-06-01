@@ -34,6 +34,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   width: 350px;
+  border: transparent 2px solid;
 }
 
 .card:hover {
