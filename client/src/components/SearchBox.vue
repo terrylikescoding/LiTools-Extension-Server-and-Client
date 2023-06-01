@@ -7,8 +7,8 @@
                     @click.prevent="$emit('update:search-model', '')">
                     <i class="fas fa-times-circle"></i>
                 </button>
-
             </div>
+
             <input type="text" class="form-control border-0 rounded-0" :placeholder="searchPlaceholder" :value="searchModel"
                 @input="$emit('update:search-model', $event.target.value)" />
             <div class="input-group-append">
@@ -41,6 +41,9 @@ export default {
 </script>
   
 <style scoped>
+.input-group-prepend{
+    width: 52.6px;
+}
 .input-group-prepend>.btn {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;

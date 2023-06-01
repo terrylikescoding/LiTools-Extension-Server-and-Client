@@ -1,33 +1,20 @@
 <template>
   <div class="container">
-    <h1>Extensions</h1>
+    <h2>插件市场</h2>
     <div class="search-container">
-      <input
-        type="text"
-        placeholder="Search extensions..."
-        v-model="searchQuery"
-        @input="filterExtensions"
-      />
+      <SearchBox class="searchbox" :search-placeholder="searchBoxPlaceholder" :search-call-back="filterExtensions"
+        :search-model="searchQuery" @update:search-model="searchQuery = $event" />
     </div>
 
     <!-- 卡片父容器 -->
     <div class="card-container">
-      <div
-        v-for="extension in filteredExtensions"
-        :key="extension.id"
-       >
-        <ExtensionInfoCard
-        :extension="extension"
-        />
+      <div v-for="extension in filteredExtensions" :key="extension.id">
+        <ExtensionInfoCard :extension="extension" />
       </div>
     </div>
 
     <!-- 页码 -->
-    <PageNumber
-      :current-page="page"
-      :total-pages="totalPages"
-      @go-to-page="goToPage"
-    />
+    <PageNumber :current-page="page" :total-pages="totalPages" @go-to-page="goToPage" />
   </div>
 </template>
 
@@ -35,11 +22,13 @@
 import axios from "axios";
 import PageNumber from "./PageNumber.vue";
 import ExtensionInfoCard from "./ExtensionInfoCard.vue";
+import SearchBox from "./SearchBox.vue";
 
 export default {
   components: {
     PageNumber,
-    ExtensionInfoCard
+    ExtensionInfoCard,
+    SearchBox
   },
   data() {
     return {
@@ -48,6 +37,7 @@ export default {
       extensions: [],
       searchQuery: "",
       totalPages: null, // 初始化为 null
+      searchBoxPlaceholder: "搜索插件..."
     };
   },
   computed: {
@@ -75,7 +65,7 @@ export default {
         .then((response) => {
           this.extensions = response.data.extensions;
           // testing 添加评分等
-          for(let e of this.extensions){
+          for (let e of this.extensions) {
             // e['rating'] = 4.5
             e.rating = 4.5
             e.isNew = true
@@ -92,7 +82,7 @@ export default {
       try {
         const result = await axios.get("http://localhost:3000/extensions/count");
         const totalExtensions = result.data.count;
-        console.log('result.data.count=',totalExtensions);
+        console.log('result.data.count=', totalExtensions);
         this.totalPages = Math.ceil(totalExtensions / this.pageSize);
       } catch (error) {
         console.error(error);
@@ -117,7 +107,15 @@ export default {
 }
 
 .search-container {
-margin-bottom: 20px;
+  margin-bottom: 20px;
+ 
+}
+
+.searchbox{
+  border: 1px solid #0077cc;
+  width: 60%;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .card-container {
@@ -139,27 +137,27 @@ margin-bottom: 20px;
 }
 
 .page-number {
-margin-top: 20px;
-display: flex;
-justify-content: center;
-align-items: center;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 input[type="number"] {
-width: 50px;
-margin-left: 10px;
-margin-right: 10px;
+  width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 button {
-padding: 5px 10px;
-border-radius: 5px;
-background-color: #0077cc;
-color: #fff;
-cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #0077cc;
+  color: #fff;
+  cursor: pointer;
 }
 
 button:hover {
-opacity: 0.8;
+  opacity: 0.8;
 }
 </style>
