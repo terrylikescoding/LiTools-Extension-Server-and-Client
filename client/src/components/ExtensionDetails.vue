@@ -1,18 +1,16 @@
-<!-- <template>
-  <div>
-    <h1>{{ extension ? extension.name : 'No name' }}</h1>
-    <p>{{ extension ? extension.description : 'No description' }}</p>
-    <button @click="onBack">Back to Extensions</button>
-  </div>
-</template>
-   -->
 <template>
   <div class="container">
     <div>
       <h1>{{ extension ? extension.name : 'No name' }}</h1>
       <p>{{ extension ? extension.description : 'No description' }}</p>
-      <button @click="onBack">返回插件市场首页</button>
+      <button class="btn btn-primary" @click="onBack">返回插件市场首页</button>
     </div>
+    
+    <!-- 测试用button,后续美化 -->
+    <div>
+      <button class="btn btn-primary" @click="download">Download</button>
+    </div>
+
     <br />
     <br />
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -92,7 +90,16 @@ export default {
       // Use the router to navigate back to the extensions list page
       this.$router.push({ name: 'extensionList' });
     },
+    download(){
+      alert('download')
+    }
   },
 };
 </script>
+
+<style scoped>
+.btn{
+  margin-bottom: 10px;
+}
+</style>
   
