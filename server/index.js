@@ -10,6 +10,8 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const Extension = require('./models/extension');
 const bodyParser = require('body-parser');
+const path = require("path");
+const fs = require("fs");
 
 
 const app = express();
@@ -22,6 +24,22 @@ const db = new sqlite3.Database('./database.sqlite');
 
 // Middleware to parse request body
 app.use(express.json());
+
+// Serve the downloaded extensions
+app.use("/downloads", express.static(path.join(__dirname, "extension-repo")));
+
+// Endpoint to download an extension
+app.get("/extensions/:id/download", (req, res) => {
+  const extensionId = req.params.id;
+  const extensionPath = path.join(__dirname, "extension-repo", 'Extension'+ extensionId, "1.0.1", `Extension${extensionId}.ltx.zip`);
+  if (fs.existsSync(extensionPath)) {
+   console.log(extensionPath);
+    res.download(extensionPath);
+  } else {
+    res.status(404).send("Extension not found!");
+  }
+});
+
 
 // Get a list of all extensions
 app.get('/extensions', async (req, res) => {
@@ -110,6 +128,9 @@ app.post('/extensions/upload', (req, res) => {
   });
 });
 
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+

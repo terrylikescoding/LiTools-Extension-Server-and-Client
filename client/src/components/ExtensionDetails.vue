@@ -8,7 +8,7 @@
     
     <!-- 测试用button,后续美化 -->
     <div>
-      <button class="btn btn-primary" @click="download">Download</button>
+      <button class="btn btn-primary" @click="downloadExtension">Download</button>
     </div>
 
     <br />
@@ -58,13 +58,26 @@ export default {
       overview: "This is the overview tab.",
       version: "This is the version tab.",
       review: "This is the review tab.",
+      // id: this.$route.params.id,
     };
   },
-  created() {
+ created() {
     // Fetch the extension details using the ID passed as a route parameter
     this.fetchExtension(this.id);
   },
   methods: {
+    async downloadExtension() {
+      const res = await fetch(`http://localhost:3000/extensions/${this.id}/download`);
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Extension1.ltx.zip`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    },
     fetchExtension(id) {
       console.log('Fetching extension with ID:', id);
       axios.get(`http://localhost:3000/extensions/${id}`).then(response => {
@@ -89,9 +102,6 @@ export default {
     onBack() {
       // Use the router to navigate back to the extensions list page
       this.$router.push({ name: 'extensionList' });
-    },
-    download(){
-      alert('download')
     }
   },
 };
