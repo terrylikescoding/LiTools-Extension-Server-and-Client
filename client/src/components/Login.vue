@@ -21,13 +21,13 @@
 
             <div class="form-group form-check d-flex justify-content-between align-items-center">
               <div class="form-check">
-                <input type="checkbox" class="form-check-input mr-2" id="remember-me" v-model="rememberMe">
+                <input type="checkbox" class="form-check-input mr-2 remember-me" id="remember-me" v-model="rememberMe">
                 <label class="form-check-label" for="remember-me">Remember me</label>
               </div>
               <a href="#" class="btn btn-link bd-highlight">Forget password?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mt-4" @click.prevent="login()">Login</button>
+            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()">Login</button>
 
             <p class="mt-3">Don't have an account? <a href="#">Register here.</a></p>
           </form>
@@ -55,6 +55,21 @@
   position: relative;
   z-index: 2;
 }
+
+.remember-me{
+  margin-top :7px;
+}
+
+.form-check{
+  margin-bottom: 0;
+}
+
+.login-btn{
+  margin-top: 10px;
+}
+
+
+
 </style>
 
 <script>
