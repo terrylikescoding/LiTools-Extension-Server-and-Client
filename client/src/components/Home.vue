@@ -1,72 +1,112 @@
 <template>
-  <div class="home">
-    <h1>LiTools</h1>
-    <p>{{ loremText }}</p>
+  <div class="container-fluid">
+    <div class="row align-items-center hero">
+      <div class="col-md-6 text-center">
+        <h1>Download Internet Download Manager</h1>
+        <p class="lead">
+          Internet Download Manager has been registered with a&nbsp;
+          <span class="badge bg-info">fake serial number</span>.
+        </p>
+        <p>
+          <button class="btn btn-primary btn-lg">
+            Download Now
+          </button>
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img src="../assets/idm.png" alt="Internet Download Manager" />
+      </div>
+    </div>
 
-    <div class="grid">
-      <div class="grid-item" v-for="(image, index) in images" :key="index">
-        <img :src="image" alt="LiTools image">
+    <div class="feature-container">
+  <div class="row features justify-content-center">
+    <div class="col-md-4 d-flex flex-column align-items-center">
+      <img src="../assets/feature1.png" alt="Feature 1" />
+      <div class="text-center mt-4">
+        <h3>Resume Downloads</h3>
+        <p>Internet Download Manager will resume unfinished downloads from where they left off.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row features justify-content-center">
+    <div class="col-md-4 d-flex flex-column align-items-center mt-md-0 mt-4">
+      <img src="../assets/feature2.png" alt="Feature 2" />
+      <div class="text-center mt-4">
+        <h3>Speed Acceleration</h3>
+        <p>Internet Download Manager can accelerate downloads by up to 5 times due to its intelligent dynamic file segmentation technology.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row features justify-content-center">
+    <div class="col-md-4 d-flex flex-column align-items-center mt-md-0 mt-4">
+      <img src="../assets/feature3.png" alt="Feature 3" />
+      <div class="text-center mt-4">
+        <h3>Simple Installation</h3>
+        <p>The installation wizard is simple and intuitive, making the setup process fast and easy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    <div class="row testimonials">
+      <div class="col-md-6">
+        <blockquote class="blockquote">
+          IDM saved my day. I was downloading a large file when my internet connection dropped. When I reconnected, IDM
+          resumed the download from where it left off and I was able to get my work done on time. Thanks IDM!
+          <footer class="blockquote-footer">John Doe</footer>
+        </blockquote>
+      </div>
+      <div class="col-md-6">
+        <blockquote class="blockquote">
+          I've been using IDM for years and it has never let me down. The speed acceleration feature is amazing and has
+          saved me so much time over the years.
+          <footer class="blockquote-footer">Jane Doe</footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="row call-to-action">
+      <div class="col-md-8 offset-md-2 text-center">
+        <h2>Download Internet Download Manager Today</h2>
+        <p>Experience fast, reliable, and secure downloads with internet Download Manager.</p>
+        <p>
+          <button class="btn btn-primary btn-lg">
+            Download Now
+          </button>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>.home {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+<style scoped>
+.hero {
+  height: 80vh;
+  background-color: #f2f6ff;
 }
 
-.home h1 {
-  text-align: center;
+.features {
+  padding: 80px 0;
+  background-color: #fafafa;
 }
 
-.home p {
-  text-align: justify;
-  margin-bottom: 40px;
+.testimonials {
+  padding: 80px 0;
+  background-color: #f2f6ff;
 }
 
-.home .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
+.call-to-action {
+  padding: 80px 0;
+  background-color: #fafafa;
 }
-
-.home .grid-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.2s ease-in-out;
-}
-
-.home .grid-item img:hover {
-  transform: scale(1.1);
-}
-
 </style>
 
 <script>
 export default {
-  name: 'Home',
-  data() {
-    return {
-      images: [
-        'https://picsum.photos/600/400/?image=1084',
-        'https://picsum.photos/600/400/?image=1048',
-        'https://picsum.photos/600/400/?image=1065',
-        'https://picsum.photos/600/400/?image=1025',
-        'https://picsum.photos/600/400/?image=1063',
-        'https://picsum.photos/600/400/?image=1018',
-        'https://picsum.photos/600/400/?image=984',
-        'https://picsum.photos/600/400/?image=1081',
-        'https://picsum.photos/600/400/?image=1080',
-        'https://picsum.photos/600/400/?image=1079',
-        'https://picsum.photos/600/400/?image=1077',
-        'https://picsum.photos/600/400/?image=1074',
-      ],
-      loremText:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus finibus nibh, vitae volutpat ex vehicula vel. Mauris fringilla sem in turpis venenatis sagittis. Curabitur eu sapien et sem consequat viverra. Sed vulputate lobortis magna at bibendum. Mauris finibus, massa ut tempus accumsan, tellus augue gravida nisi, ut efficitur justo mauris nec velit. Integer egestas purus eu ante cursus, ac rhoncus enim consequat. Nam pretium id mauris in lobortis. Cras quis consectetur metus. Aliquam erat volutpat. Donec tristique, sapien et dictum posuere, nisi urna tincidunt elit, ut rutrum ligula leo a quam. Sed elementum commodo mi, vel varius arcu sagittis et.'
-    };
-  }
+  name: "Home",
 };
 </script>
