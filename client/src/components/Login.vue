@@ -9,13 +9,19 @@
           <form>
             <div class="form-group">
               <label for="username">Username:</label>
-              <input type="text" class="form-control" id="username" v-model="username">
+              <input type="text" class="form-control" id="username" v-model="username" :class="{ 'is-invalid': !username }" required>
+              <div class="invalid-feedback">
+                Please enter a valid username.
+              </div>
             </div>
 
             <div class="form-group">
               <label for="password">Password:</label>
               <div class="d-flex bd-highlight">
-                <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password">      
+                <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password" :class="{ 'is-invalid': !password }" required>  
+                <div class="invalid-feedback">
+                  Please enter a valid password.
+                </div>    
               </div>
             </div>
 
@@ -27,7 +33,7 @@
               <a href="#" class="btn btn-link bd-highlight">Forget password?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()">Login</button>
+            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()" :disabled="!username || !password">Login</button>
 
             <p class="mt-3">Don't have an account? <a href="#">Register here.</a></p>
           </form>
@@ -67,9 +73,6 @@
 .login-btn{
   margin-top: 10px;
 }
-
-
-
 </style>
 
 <script>
