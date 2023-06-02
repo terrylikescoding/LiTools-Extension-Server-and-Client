@@ -9,19 +9,19 @@
           <form>
             <div class="form-group">
               <label for="username">Username:</label>
-              <input type="text" class="form-control" id="username" v-model="username" :class="{ 'is-invalid': usernameInvalid }" required>
+              <input type="text" class="form-control" id="username" v-model="username"
+                :class="{ 'is-invalid': usernameInvalid }" required>
               <div class="invalid-feedback">
                 Please enter a valid username.
               </div>
             </div>
 
             <div class="form-group">
-              <label for="password">Password:</label>
-              <div class="d-flex bd-highlight">
-                <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password" :class="{ 'is-invalid': passwordInvalid }" required>  
-                <div class="invalid-feedback">
-                  Please enter a valid password.
-                </div>    
+              <label for="password">Password:</label> 
+                <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password"
+                  :class="{ 'is-invalid': passwordInvalid }" required>
+                  <div class="invalid-feedback">
+                Please enter a valid password.
               </div>
             </div>
 
@@ -33,7 +33,7 @@
               <a href="#" class="btn btn-link bd-highlight">Forget password?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()" >Login</button>
+            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()">Login</button>
 
             <p class="mt-3">Don't have an account? <a href="#">Register here.</a></p>
           </form>
@@ -62,15 +62,15 @@
   z-index: 2;
 }
 
-.remember-me{
-  margin-top :7px;
+.remember-me {
+  margin-top: 7px;
 }
 
-.form-check{
+.form-check {
   margin-bottom: 0;
 }
 
-.login-btn{
+.login-btn {
   margin-top: 10px;
 }
 </style>
@@ -99,7 +99,7 @@ export default {
       } else {
         this.passwordInvalid = false;
       }
-      
+
       // Check if the input fields are valid before continuing with login logic
       if (this.username && this.password) {
         // Add code to handle login logic here
