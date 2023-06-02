@@ -35,7 +35,7 @@
 
             <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()">Login</button>
 
-            <p class="mt-3">Don't have an account? <a href="#">Register here.</a></p>
+            <p class="mt-3">Don't have an account? <router-link to="/register">Register here.</router-link></p>
           </form>
         </div>
       </div>
@@ -76,7 +76,13 @@
 </style>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
+  name : "Login",
+  components: {
+    RouterLink,
+  },
   data() {
     return {
       username: '',
