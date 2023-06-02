@@ -9,7 +9,7 @@
           <form>
             <div class="form-group">
               <label for="username">Username:</label>
-              <input type="text" class="form-control" id="username" v-model="username" :class="{ 'is-invalid': !username }" required>
+              <input type="text" class="form-control" id="username" v-model="username" :class="{ 'is-invalid': usernameInvalid }" required>
               <div class="invalid-feedback">
                 Please enter a valid username.
               </div>
@@ -18,7 +18,7 @@
             <div class="form-group">
               <label for="password">Password:</label>
               <div class="d-flex bd-highlight">
-                <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password" :class="{ 'is-invalid': !password }" required>  
+                <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password" :class="{ 'is-invalid': passwordInvalid }" required>  
                 <div class="invalid-feedback">
                   Please enter a valid password.
                 </div>    
@@ -33,7 +33,7 @@
               <a href="#" class="btn btn-link bd-highlight">Forget password?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()" :disabled="!username || !password">Login</button>
+            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()" >Login</button>
 
             <p class="mt-3">Don't have an account? <a href="#">Register here.</a></p>
           </form>
@@ -81,12 +81,29 @@ export default {
     return {
       username: '',
       password: '',
-      rememberMe: false
+      rememberMe: false,
+      usernameInvalid: false,
+      passwordInvalid: false
     }
   },
   methods: {
     login() {
-      // Add code to handle login logic here
+      // Check if the input fields are empty
+      if (!this.username) {
+        this.usernameInvalid = true;
+      } else {
+        this.usernameInvalid = false;
+      }
+      if (!this.password) {
+        this.passwordInvalid = true;
+      } else {
+        this.passwordInvalid = false;
+      }
+      
+      // Check if the input fields are valid before continuing with login logic
+      if (this.username && this.password) {
+        // Add code to handle login logic here
+      }
     }
   }
 }
