@@ -14,7 +14,17 @@
 
             <div class="form-group">
               <label for="password">Password:</label>
-              <input type="password" class="form-control" id="password" v-model="password">
+              <div class="d-flex bd-highlight">
+                <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password">      
+              </div>
+            </div>
+
+            <div class="form-group form-check d-flex justify-content-between align-items-center">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input mr-2" id="remember-me" v-model="rememberMe">
+                <label class="form-check-label" for="remember-me">Remember me</label>
+              </div>
+              <a href="#" class="btn btn-link bd-highlight">Forget password?</a>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block mt-4" @click.prevent="login()">Login</button>
@@ -52,7 +62,8 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      rememberMe: false
     }
   },
   methods: {
