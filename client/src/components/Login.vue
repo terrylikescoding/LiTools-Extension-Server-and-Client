@@ -4,38 +4,38 @@
       <div class="login-form-overlay"></div>
       <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="max-width: 500px; margin: 0 auto;">
         <div class="card-body">
-          <h2 class="card-title text-center mb-4">Login</h2>
+          <h2 class="card-title text-center mb-4">登录</h2>
 
           <form>
             <div class="form-group">
-              <label for="username">Username:</label>
+              <label for="username">用户名:</label>
               <input type="text" class="form-control" id="username" v-model="username"
                 :class="{ 'is-invalid': usernameInvalid }" required>
               <div class="invalid-feedback">
-                Please enter a valid username.
+                请输入用户名！
               </div>
             </div>
 
             <div class="form-group">
-              <label for="password">Password:</label> 
+              <label for="password">密码:</label> 
                 <input type="password" class="form-control flex-grow-1 bd-highlight" id="password" v-model="password"
                   :class="{ 'is-invalid': passwordInvalid }" required>
                   <div class="invalid-feedback">
-                Please enter a valid password.
+                    请输入密码！
               </div>
             </div>
 
             <div class="form-group form-check d-flex justify-content-between align-items-center">
               <div class="form-check">
                 <input type="checkbox" class="form-check-input mr-2 remember-me" id="remember-me" v-model="rememberMe">
-                <label class="form-check-label" for="remember-me">Remember me</label>
+                <label class="form-check-label" for="remember-me">记住我</label>
               </div>
-              <a href="#" class="btn btn-link bd-highlight">Forget password?</a>
+              <a href="#" class="btn btn-link bd-highlight">忘记密码?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()">Login</button>
+            <button type="submit" class="btn btn-primary btn-block mt-4 login-btn" @click.prevent="login()">登录</button>
 
-            <p class="mt-3">Don't have an account? <router-link to="/register">Register here.</router-link></p>
+            <p class="mt-3">还没有账号?&nbsp;<router-link to="/register">点此注册</router-link></p>
           </form>
         </div>
       </div>
