@@ -4,44 +4,58 @@
       <div class="register-form-overlay"></div>
       <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="max-width: 500px; margin: 0 auto;">
         <div class="card-body">
-          <h2 class="card-title text-center mb-4">Register</h2>
+          <h2 class="card-title text-center mb-4">注册</h2>
 
           <form>
             <div class="form-group">
-              <label for="email">Email:</label>
+              <label for="email">邮箱:</label>
               <input type="email" class="form-control" id="email" v-model="email" :class="{ 'is-invalid': emailInvalid }" required>
               <div class="invalid-feedback">
-                Please enter a valid email address.
+                请输入有效的邮箱地址
               </div>
             </div>
 
             <div class="form-group">
-              <label for="username">Username:</label>
+              <label for="username">用户名:</label>
               <input type="text" class="form-control" id="username" v-model="username" :class="{ 'is-invalid': usernameInvalid }" required>
               <div class="invalid-feedback">
-                Please enter a valid username.
+               请输入有效的用户名
               </div>
             </div>
 
             <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" class="form-control" id="password" v-model="password" :class="{ 'is-invalid': passwordInvalid }" required>
+              <label for="password">密码:</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="password" v-model="password" :class="{ 'is-invalid': passwordInvalid }" required>
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i :class="[showPassword ? 'fas fa-eye-slash' : 'fas fa-eye']" @click="toggleShowPassword"></i>
+                  </span>
+                </div>
+              </div>
               <div class="invalid-feedback">
-                Please enter a valid password.
+                请输入有效的密码
               </div>
             </div>
 
             <div class="form-group">
-              <label for="confirm-password">Confirm Password:</label>
-              <input type="password" class="form-control" id="confirm-password" v-model="confirmPassword" :class="{ 'is-invalid': passwordMismatch }" required>
+              <label for="confirm-password">确认密码:</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="confirm-password" v-model="confirmPassword" :class="{ 'is-invalid': passwordMismatch }" required>
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i :class="[showPassword ? 'fas fa-eye-slash' : 'fas fa-eye']" @click="toggleShowPassword"></i>
+                  </span>
+                </div>
+              </div>
               <div class="invalid-feedback">
-                Passwords do not match.
+               两次输入的密码不一致
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mt-4 register-btn" @click.prevent="register()" >Register</button>
+            <button type="submit" class="btn btn-primary btn-block mt-4 register-btn" @click.prevent="register()" >注册</button>
 
-            <p class="mt-3">Already have an account? <router-link to="/login">Login here.</router-link></p>
+            <p class="mt-3">已经有账号? <router-link to="/login">点此登录</router-link></p>
           </form>
         </div>
       </div>
@@ -75,6 +89,7 @@
 
 <script>
 import { RouterLink } from 'vue-router';
+
 export default {
   components:{
     RouterLink
@@ -88,7 +103,8 @@ export default {
       emailInvalid: false,
       usernameInvalid: false,
       passwordInvalid: false,
-      passwordMismatch: false
+      passwordMismatch: false,
+      showPassword: false
     }
   },
   methods: {
@@ -121,6 +137,9 @@ export default {
       if (this.email && this.username && this.password && !this.passwordMismatch) {
         // Add code to handle registration logic here
       }
+    },
+    toggleShowPassword() {
+      this.showPassword = !this.showPassword;
     }
   }
 }
