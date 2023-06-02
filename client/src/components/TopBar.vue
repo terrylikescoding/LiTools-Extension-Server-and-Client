@@ -41,65 +41,18 @@
           <router-link v-if="isAdmin" class="nav-item nav-link" to="/admin-panel"
             >Admin</router-link
           >
+
           <!-- 登录后，Login变成用户名 -->
-          <button
-            class="nav-item nav-link btn btn-link"
-            @click="toggleLoginForm"
+          <router-link v-if="isAdmin" class="nav-item nav-link" to="/login"
+            >{{ loggedInUser ? loggedInUser : "登录" }}</router-link
           >
-            {{ loggedInUser ? loggedInUser : "登录" }}
-          </button>
+
         </div>
       </div>
     </div>
   </nav>
-  <div class="modal" tabindex="-1" role="dialog" v-if="showLoginForm">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Login</h5>
-          <button type="button" class="close" @click="toggleLoginForm">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                v-model="email"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                v-model="password"
-                required
-              />
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            @click="toggleLoginForm"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary" @click="loginUser">
-            Login
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
 </template>
   
   <script>

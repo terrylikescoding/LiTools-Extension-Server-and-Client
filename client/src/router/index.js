@@ -4,6 +4,10 @@ import ExtensionList from '@/components/ExtensionList.vue';
 import ExtensionDetails from '@/components/ExtensionDetails.vue';
 import Upload from '@/components/Upload.vue';
 import ExtensionIdeas from '@/components/ExtensionIdeas.vue';
+import Login from '@/components/Login.vue';
+import AdminPanel  from '@/components/AdminPanel.vue';
+
+
 
 const routes = [
   {
@@ -32,6 +36,16 @@ const routes = [
     path: '/extension-ideas',
     name: 'extension-ideas',
     component: ExtensionIdeas,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+  },
+  {
+    path: '/admin-panel',
+    name: 'admin-panel',
+    component: AdminPanel,
   },
 ];
 
