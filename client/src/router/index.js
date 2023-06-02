@@ -5,8 +5,9 @@ import ExtensionDetails from '@/components/ExtensionDetails.vue';
 import Upload from '@/components/Upload.vue';
 import ExtensionIdeas from '@/components/ExtensionIdeas.vue';
 import Login from '@/components/Login.vue';
-import AdminPanel  from '@/components/AdminPanel.vue';
-import Register  from '@/components/Register.vue';
+import AdminPanel from '@/components/AdminPanel.vue';
+import Register from '@/components/Register.vue';
+import DownloadTable from '@/components/DownloadTable.vue';
 
 
 
@@ -52,6 +53,11 @@ const routes = [
     path: '/admin-panel',
     name: 'admin-panel',
     component: AdminPanel,
+  },
+  {
+    path: '/download',
+    name: 'download',
+    component: DownloadTable,
   },
 ];
 
