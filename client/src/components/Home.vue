@@ -18,35 +18,61 @@
       </div>
     </div>
 
-    <div class="feature-container">
-  <div class="row features justify-content-center">
-    <div class="col-md-4 d-flex flex-column align-items-center">
-      <img src="../assets/feature1.png" alt="Feature 1" />
-      <div class="text-center mt-4">
-        <h3>Resume Downloads</h3>
-        <p>Internet Download Manager will resume unfinished downloads from where they left off.</p>
+    <section class="section-features bg-white">
+      <div class="container col-lg-8">
+        <h2 class="text-center mb-5">Features</h2>
+
+        <div class="row mb-4  mt-4">
+          <div class="col-lg-12">
+            <div class="feature-item">
+              <div class="row">
+                <div class="col-lg-9">
+                  <img src="../assets/feature1.png" alt="Feature 1" class="img-fluid">
+                </div>
+                <div class="col-lg-3">
+                  <h3>Resume Downloads</h3>
+                  <p>Internet Download Manager will resume unfinished downloads from where they left off.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div class="row  mb-4 mt-4">
+          <div class="col-lg-12">
+            <div class="feature-item">
+              <div class="row">
+                <div class="col-lg-9">
+                  <img src="../assets/skpscr.jpeg" alt="Feature 1" class="img-fluid">
+                </div>
+                <div class="col-lg-3">
+                  <h3>Speed Acceleration</h3>
+                  <p>Internet Download Manager can accelerate downloads by up to 5 times due to its intelligent dynamic file segmentation technology.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+       
+          <div class="row  mb-4  mt-4">
+          <div class="col-lg-12">
+            <div class="feature-item">
+              <div class="row">
+                <div class="col-lg-9">
+                  <img src="../assets/feature1.png" alt="Feature 1" class="img-fluid">
+                </div>
+                <div class="col-lg-3">
+                  <h3>Simple Installation</h3>
+                  <p>The installation wizard is simple and intuitive, making the setup process fast and easy.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
       </div>
-    </div>
-  </div>
-  <div class="row features justify-content-center">
-    <div class="col-md-4 d-flex flex-column align-items-center mt-md-0 mt-4">
-      <img src="../assets/feature2.png" alt="Feature 2" />
-      <div class="text-center mt-4">
-        <h3>Speed Acceleration</h3>
-        <p>Internet Download Manager can accelerate downloads by up to 5 times due to its intelligent dynamic file segmentation technology.</p>
-      </div>
-    </div>
-  </div>
-  <div class="row features justify-content-center">
-    <div class="col-md-4 d-flex flex-column align-items-center mt-md-0 mt-4">
-      <img src="../assets/feature3.png" alt="Feature 3" />
-      <div class="text-center mt-4">
-        <h3>Simple Installation</h3>
-        <p>The installation wizard is simple and intuitive, making the setup process fast and easy.</p>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
+
 
 
 
@@ -90,7 +116,8 @@
 }
 
 .features {
-  padding: 80px 0;
+  padding: 0;
+  margin-bottom: 30px;
   background-color: #fafafa;
 }
 
