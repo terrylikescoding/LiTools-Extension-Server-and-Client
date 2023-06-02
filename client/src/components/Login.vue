@@ -1,58 +1,64 @@
 <template>
-    <div class="login-form-wrapper" v-show="show">
-      <div class="login-form">
-        <h2>Login</h2>
-        <form>
-          <div class="input-container">
-            <label for="email">Email</label>
-            <input type="email" id="email" v-model="email" required>
-          </div>
-          <div class="input-container">
-            <label for="password">Password</label>
-            <input type="password" id="password" v-model="password" required>
-          </div>
-          <button class="submit-btn" type="submit" @click.prevent="loginUser">Login</button>
-        </form>
-        <p class="register-link">
-          Don't have an account? 
-          <a href="#" @click.prevent="toggleRegisterForm">Register now</a>
-        </p>
+  <div class="container mt-5">
+    <div class="position-relative">
+      <div class="login-form-overlay"></div>
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="max-width: 500px; margin: 0 auto;">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Login</h2>
+
+          <form>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" id="username" v-model="username">
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" v-model="password">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-4" @click.prevent="login()">Login</button>
+
+            <p class="mt-3">Don't have an account? <a href="#">Register here.</a></p>
+          </form>
+        </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  import { mapMutations } from 'vuex';
-  
-  export default {
-    data() {
-      return {
-        email: '',
-        password: ''
-      };
-    },
-    computed: {
-      show() {
-        return this.$store.state.loginFormVisible;
-      }
-    },
-    methods: {
-      ...mapMutations(['toggleLoginForm']),
-      loginUser() {
-        // Use Axios or other library to send login request to server
-        // Then redirect user to dashboard if login successful
-  
-        this.toggleLoginForm(); // Toggle the login form
-      }
-    },
-    created() {
-      this.toggleLoginForm(); // Show the login form on component creation
+  </div>
+</template>
+
+<style scoped>
+/* Frosted glass effect styles */
+
+.login-form-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+}
+</style>
+
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: ''
     }
-  };
-  </script>
-  
-  
-  <style scoped>
-  /* login form styles */
-  </style>
-  
+  },
+  methods: {
+    login() {
+      // Add code to handle login logic here
+    }
+  }
+}
+</script>
