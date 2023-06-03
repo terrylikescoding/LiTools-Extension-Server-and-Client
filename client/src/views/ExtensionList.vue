@@ -20,9 +20,9 @@
 
 <script>
 import axios from "axios";
-import PageNumber from "./PageNumber.vue";
-import ExtensionInfoCard from "./ExtensionInfoCard.vue";
-import SearchBox from "./SearchBox.vue";
+import PageNumber from "@/components/PageNumber.vue";
+import ExtensionInfoCard from "@/components/ExtensionInfoCard.vue";
+import SearchBox from "@/components/SearchBox.vue";
 
 export default {
   components: {

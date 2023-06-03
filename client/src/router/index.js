@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
-import ExtensionList from '@/components/ExtensionList.vue';
-import ExtensionDetails from '@/components/ExtensionDetails.vue';
-import Upload from '@/components/Upload.vue';
-import ExtensionIdeas from '@/components/ExtensionIdeas.vue';
-import Login from '@/components/Login.vue';
-import AdminPanel from '@/components/AdminPanel.vue';
-import Register from '@/components/Register.vue';
+import ExtensionList from '@/views/ExtensionList.vue';
+import ExtensionDetails from '@/views/ExtensionDetails.vue';
+import Upload from '@/views/Upload.vue';
+import ExtensionIdeas from '@/views/ExtensionIdeas.vue';
+import Login from '@/views/Login.vue';
+import AdminPanel from '@/views/AdminPanel.vue';
+import Register from '@/views/Register.vue';
 import DownloadTable from '@/components/DownloadTable.vue';
 
 
