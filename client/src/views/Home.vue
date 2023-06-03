@@ -8,7 +8,7 @@
           <span class="badge bg-info">fake serial number</span>.
         </p>
         <p>
-          <button class="btn btn-primary btn-lg">
+          <button @click="$router.push(`/download`)" class="btn btn-primary btn-lg">
             Download Now
           </button>
         </p>
